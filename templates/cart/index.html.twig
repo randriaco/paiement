@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+    <div class="container">    
+	
+        <h2>Mon panier</h2>
+		
+        <form method="POST">
+		
+			<table class="table">
+				<thead>
+					<tr class="table-active">
+						<td>Produit</td>
+						<td>Prix</td>
+					</tr>
+				</thead>
+				
+				<tbody>
+					{% for product in cart.products %}
+						<tr>
+							<td>{{ product.name|capitalize }}</td>
+							<td>{{ product.price/100 }} €</td>
+						</tr>
+					{% endfor %}
+					<tr class="table-active">
+						<td>Total à payer</td>
+						<td>{{ cart.total/100 }} €</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<a href="{{ path('checkout') }}" class="btn btn-primary ">Acheter</a>
+		
+		</form>
+		
+    </div>
+
+{% endblock %}
